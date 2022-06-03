@@ -1,28 +1,13 @@
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-
 type MapProps = {
 	zoom: number;
 	lat: number;
 	lng: number;
 };
 
-
-
-
 export default function Map({ zoom, lat, lng }: MapProps) {
-	console.log(lat, lng);
-	const GoogleMapsWrapper = withGoogleMap((prop: any) => (
-		<GoogleMap defaultZoom={zoom} defaultCenter={{ lat, lng }}>
-			<Marker position={{ lat, lng }} />
-		</GoogleMap>
-	));
-
 	return (
-		<GoogleMapsWrapper
-			containerElement={
-				<div style={{ height: `500px`, width: "500px" }} />
-			}
-			mapElement={<div style={{ height: `100%` }} />}
-		/>
+		<iframe className="w-full h-[600px] mb-6"
+			src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA3aDP3tXu2iQGbSawtMKNlAucSmF9kQHQ&q=${lat},${lng}&zoom=${zoom}`}
+		></iframe>
 	);
 }

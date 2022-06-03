@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import Section from "../components/Section";
 import Spotlight from "../components/Spotlight";
 import Map from "../components/Map";
+import Script from "next/script";
+import Partners from "../components/Partners";
 
 export default function Home({ introduction, sektioner }: any) {
 	return (
@@ -16,7 +18,6 @@ export default function Home({ introduction, sektioner }: any) {
 					name="description"
 					content="Lindebergs Blomsterhandel i Eslöv har ett brett utbud av olika sorters blommor. 0413-101 25 0413-137 93"
 				/>
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3aDP3tXu2iQGbSawtMKNlAucSmF9kQHQ"></script>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
@@ -32,6 +33,18 @@ export default function Home({ introduction, sektioner }: any) {
 							<Spotlight items={sektion.puffar} />
 						)}
 
+						{sektion.karta && (
+							<Map
+								zoom={18}
+								lat={sektion.karta.latitude}
+								lng={sektion.karta.longitude}
+							/>
+						)}
+
+						{sektion.partners && (
+							<Partners partners={sektion.partners} />
+						)}
+
 						{sektion.innehall?.html?.length > 0 && (
 							<div
 								className="max-w-4xl mx-auto"
@@ -39,10 +52,6 @@ export default function Home({ introduction, sektioner }: any) {
 									__html: sektion.innehall.html,
 								}}
 							/>
-						)}
-
-						{sektion.karta && (
-							<Map zoom={sektion.karta.zoom} lat={sektion.karta.latitude} lng={sektion.karta.longitude} />
 						)}
 					</Section>
 				))}
@@ -78,6 +87,9 @@ export async function getStaticProps() {
 					karta {
 						latitude
 						longitude
+					}
+					partners {
+						url
 					}
 				}
 			}
