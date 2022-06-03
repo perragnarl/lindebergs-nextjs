@@ -3,5 +3,8 @@
 @tailwind utilities;
 
 body {
-	@apply font-roboto-slab text-xl text-text font-light;
+	@apply font-roboto-slab text-2xl text-text font-light leading-relaxed;
+}
+p {
+	@apply mb-4;
 }

@@ -1,10 +1,13 @@
 import { gql } from "@apollo/client";
 import client from "../apolloClient";
+import { GoogleMap, Marker } from "react-google-maps";
 import Head from "next/head";
 import Header from "../components/Header";
 import Section from "../components/Section";
+import Spotlight from "../components/Spotlight";
+import Map from "../components/Map";
 
-export default function Home({ introduction, puffar }: any) {
+export default function Home({ introduction, sektioner }: any) {
 	return (
 		<>
 			<Head>
@@ -13,14 +16,36 @@ export default function Home({ introduction, puffar }: any) {
 					name="description"
 					content="Lindebergs Blomsterhandel i Eslöv har ett brett utbud av olika sorters blommor. 0413-101 25 0413-137 93"
 				/>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3aDP3tXu2iQGbSawtMKNlAucSmF9kQHQ"></script>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<Header introduction={introduction} />
 			<main>
-				<Section background title={puffar.titel}>
-					hej
-				</Section>
+				{sektioner.map((sektion: any) => (
+					<Section
+						background={sektion.bakgrund}
+						title={sektion.titel}
+						key={sektion.titel}
+					>
+						{sektion.puffar.length > 0 && (
+							<Spotlight items={sektion.puffar} />
+						)}
+
+						{sektion.innehall?.html?.length > 0 && (
+							<div
+								className="max-w-4xl mx-auto"
+								dangerouslySetInnerHTML={{
+									__html: sektion.innehall.html,
+								}}
+							/>
+						)}
+
+						{sektion.karta && (
+							<Map zoom={sektion.karta.zoom} lat={sektion.karta.latitude} lng={sektion.karta.longitude} />
+						)}
+					</Section>
+				))}
 			</main>
 		</>
 	);
@@ -35,8 +60,11 @@ export async function getStaticProps() {
 					paragraph
 					phone
 				}
-				puffar(where: { id: "cl3y73hcgfvt60dumsoo0c1i5" }) {
+				sektioner {
 					titel
+					innehall {
+						html
+					}
 					puffar {
 						... on Puff {
 							bild {
@@ -46,6 +74,11 @@ export async function getStaticProps() {
 							paragraf
 						}
 					}
+					bakgrund
+					karta {
+						latitude
+						longitude
+					}
 				}
 			}
 		`,
@@ -54,7 +87,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			introduction: data.introduction,
-			puffar: data.puffar,
+			sektioner: data.sektioner,
 		},
 	};
 }
