@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	assetPrefix: "./",
-	trailingSlash: true,
-	reactStrictMode: true,
+	basePath: "/lindebergs-nextjs",
+	assetPrefix: "/lindebergs-nextjs",
 };
 
 module.exports = nextConfig;
