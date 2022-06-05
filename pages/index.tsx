@@ -1,17 +1,17 @@
 import { gql } from "@apollo/client";
 import client from "../apolloClient";
-import { GoogleMap, Marker } from "react-google-maps";
 import Head from "next/head";
 import Header from "../components/Header";
 import Section from "../components/Section";
 import Spotlight from "../components/Spotlight";
 import Map from "../components/Map";
-import Script from "next/script";
 import Partners from "../components/Partners";
 import Footer from "../components/Footer";
 import Feed from "../components/Feed";
 
 export default function Home({ introduction, sektioner }: any) {
+	const pathPrefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 	return (
 		<>
 			<Head>
@@ -20,7 +20,7 @@ export default function Home({ introduction, sektioner }: any) {
 					name="description"
 					content="Lindebergs Blomsterhandel i Eslöv har ett brett utbud av olika sorters blommor. 0413-101 25 0413-137 93"
 				/>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href={`${pathPrefix}/favicon.ico`} />
 			</Head>
 
 			<Header introduction={introduction} />
