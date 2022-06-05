@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+	@apply scroll-smooth;
+}
+
 body {
-	@apply font-roboto-slab text-2xl text-text font-light leading-relaxed;
+	@apply font-roboto-slab text-xl md:text-2xl text-text font-light leading-relaxed;
 }
 p {
 	@apply mb-4;
+}
+#powrIframeLoader {
+	display: none;
 }

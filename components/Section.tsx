@@ -1,9 +1,9 @@
-export default function Section({ background, title, children }: any) {
+export default function Section({ id, background, title, children }: any) {
 	return (
-		<section className={`py-24 ${background ? 'bg-section' : ''}`}>
-			<div className="max-w-7xl mx-auto">
-				<h2 className="text-5xl font-normal text-center pb-10">{title}</h2>
-				<span className="block h-1 bg-contrast w-11 mb-20 mx-auto" />
+		<section id={id} className={`py-16 md:py-24 ${background ? 'bg-section' : ''}`}>
+			<div className="max-w-7xl mx-auto px-4">
+				<h2 className="text-3xl md:text-5xl font-semibold text-center pb-10">{title}</h2>
+				<span className="block h-[6px] bg-contrast w-11 mb-12 md:mb-20 mx-auto" />
 				{children}
 			</div>
 		</section>

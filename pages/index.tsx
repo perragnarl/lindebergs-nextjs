@@ -8,6 +8,8 @@ import Spotlight from "../components/Spotlight";
 import Map from "../components/Map";
 import Script from "next/script";
 import Partners from "../components/Partners";
+import Footer from "../components/Footer";
+import Feed from "../components/Feed";
 
 export default function Home({ introduction, sektioner }: any) {
 	return (
@@ -25,12 +27,17 @@ export default function Home({ introduction, sektioner }: any) {
 			<main>
 				{sektioner.map((sektion: any) => (
 					<Section
+						id={sektion.sektionid}
 						background={sektion.bakgrund}
 						title={sektion.titel}
 						key={sektion.titel}
 					>
 						{sektion.puffar.length > 0 && (
 							<Spotlight items={sektion.puffar} />
+						)}
+
+						{sektion.facebookFeed && (
+							<Feed />
 						)}
 
 						{sektion.karta && (
@@ -41,7 +48,7 @@ export default function Home({ introduction, sektioner }: any) {
 							/>
 						)}
 
-						{sektion.partners && (
+						{sektion.partners.length > 0 && (
 							<Partners partners={sektion.partners} />
 						)}
 
@@ -56,6 +63,7 @@ export default function Home({ introduction, sektioner }: any) {
 					</Section>
 				))}
 			</main>
+			<Footer />
 		</>
 	);
 }
@@ -69,7 +77,7 @@ export async function getStaticProps() {
 					paragraph
 					phone
 				}
-				sektioner {
+				sektioner(orderBy: index_ASC) {
 					titel
 					innehall {
 						html
@@ -83,6 +91,7 @@ export async function getStaticProps() {
 							paragraf
 						}
 					}
+					facebookFeed
 					bakgrund
 					karta {
 						latitude
@@ -91,6 +100,7 @@ export async function getStaticProps() {
 					partners {
 						url
 					}
+					sektionid
 				}
 			}
 		`,
