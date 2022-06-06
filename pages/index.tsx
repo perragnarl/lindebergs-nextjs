@@ -10,8 +10,6 @@ import Footer from "../components/Footer";
 import Feed from "../components/Feed";
 
 export default function Home({ introduction, sektioner, sidfot }: any) {
-	const pathPrefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 	return (
 		<>
 			<Head>
@@ -20,7 +18,7 @@ export default function Home({ introduction, sektioner, sidfot }: any) {
 					name="description"
 					content="Lindebergs Blomsterhandel i Eslöv har ett brett utbud av olika sorters blommor. 0413-101 25 0413-137 93"
 				/>
-				<link rel="icon" href={`${pathPrefix}/favicon.ico`} />
+				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<Header introduction={introduction} />
