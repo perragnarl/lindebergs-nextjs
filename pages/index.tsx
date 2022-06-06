@@ -36,9 +36,7 @@ export default function Home({ introduction, sektioner }: any) {
 							<Spotlight items={sektion.puffar} />
 						)}
 
-						{sektion.facebookFeed && (
-							<Feed />
-						)}
+						{sektion.facebookFeed && <Feed />}
 
 						{sektion.karta && (
 							<Map
@@ -76,6 +74,9 @@ export async function getStaticProps() {
 					titel
 					paragraph
 					phone
+					monster {
+						url
+					}
 				}
 				sektioner(orderBy: index_ASC) {
 					titel
