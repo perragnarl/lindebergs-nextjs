@@ -1,3 +1,3 @@
 # Lindebergs Blomsterhandel
 
-https://lindebergsblomsterhandel.se
+https://lindebergsblommor.se
