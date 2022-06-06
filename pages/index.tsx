@@ -9,7 +9,7 @@ import Partners from "../components/Partners";
 import Footer from "../components/Footer";
 import Feed from "../components/Feed";
 
-export default function Home({ introduction, sektioner }: any) {
+export default function Home({ introduction, sektioner, sidfot }: any) {
 	const pathPrefix = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 	return (
@@ -61,7 +61,7 @@ export default function Home({ introduction, sektioner }: any) {
 					</Section>
 				))}
 			</main>
-			<Footer />
+			<Footer contact={sidfot} />
 		</>
 	);
 }
@@ -103,14 +103,21 @@ export async function getStaticProps() {
 					}
 					sektionid
 				}
+				sidfot(where: { id: "cl4302qsrpu6f0bugo162kvmm" }) {
+					kontaktuppgifter {
+						html
+					}
+				}
 			}
 		`,
 	});
+	
 
 	return {
 		props: {
 			introduction: data.introduction,
 			sektioner: data.sektioner,
+			sidfot: data.sidfot.kontaktuppgifter.html,
 		},
 	};
 }
