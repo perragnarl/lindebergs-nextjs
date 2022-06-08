@@ -7,10 +7,13 @@ html {
 }
 
 body {
-	@apply font-roboto-slab text-xl md:text-2xl text-text font-light;
+	@apply font-roboto-slab text-xl md:text-2xl text-text;
 }
 p {
-	@apply mb-4 leading-relaxed;
+	@apply mb-4 leading-relaxed font-light;
+}
+h1,h2,h3,h4 {
+	@apply font-semibold;
 }
 #powrIframeLoader {
 	display: none;
