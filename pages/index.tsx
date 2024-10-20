@@ -34,8 +34,6 @@ export default function Home({ introduction, sektioner, sidfot }: any) {
 							<Spotlight items={sektion.puffar} />
 						)}
 
-						{sektion.facebookFeed && <Feed />}
-
 						{sektion.karta && (
 							<Map
 								zoom={18}
